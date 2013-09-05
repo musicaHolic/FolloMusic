@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.stringapp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="com.example.stringapp.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.stringapp.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.stringapp.RegisterActivity"
+            android:label="@string/title_activity_register" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.stringapp.MainActivity"
+            android:label="@string/app_name" >
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+
+        <!--
+             When the soft keyboard is showing the views of this activity should be resized in the
+             remaining space so that inline searching can take place without having to dismiss the
+             keyboard to see all the content. Therefore windowSoftInputMode is set to
+             adjustResize.
+        -->
+        <activity
+            android:name="com.example.contactslist.ui.ContactsListActivity"
+            android:label="@string/activity_contacts_list"
+            android:windowSoftInputMode="adjustResize" >
+
+            <!--
+                 Add intent-filter for search intent action and specify searchable configuration
+                 via meta-data tag. This allows this activity to receive search intents via the
+                 system hooks. In this sample this is only used on older OS versions (pre-Honeycomb)
+                 via the activity search dialog. See the Search API guide for more information:
+                 http://developer.android.com/guide/topics/search/search-dialog.html
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable_contacts" />
+        </activity>
+        <activity
+            android:name="com.example.contactslist.ui.ContactDetailActivity"
+            android:label="@string/activity_contact_detail"
+            android:parentActivityName="com.example.contactslist.ui.ContactsListActivity" >
+
+            <!--
+                 Define hierarchical parent of this activity, both via the system
+                 parentActivityName attribute (added in API Level 16) and via meta-data annotation.
+                 This allows use of the support library NavUtils class in a way that works over
+                 all Android versions. See the "Tasks and Back Stack" guide for more information:
+                 http://developer.android.com/guide/components/tasks-and-back-stack.html
+            -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.contactslist.ui.ContactsListActivity" />
+        </activity>
+
+        <receiver
+            android:name="com.example.stringapp.MyBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.example.stringapp" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.example.stringapp.service.StringAppService" />
+        <activity android:name="HomeActivity"></activity>
+    </application>
+
+</manifest>

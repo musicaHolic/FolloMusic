@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Define some key view padding values. This is useful because the values can be used in
+         multiple views and changed from one central location. It also gives us the ability to
+         provide alternate values for different device configurations using resource directory
+         qualifiers. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="padding">16dp</dimen>
+    <dimen name="listview_item_padding">16dp</dimen>
+
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+         On devices with much larger screen sizes, such as a 10" tablet like Nexus 10, bump up the
+         common padding value to add some extra white space which makes the layouts feel more
+         suitable for the larger screen.
+    -->
+    <dimen name="padding">32dp</dimen>
+    <dimen name="activity_horizontal_margin">128dp</dimen>
+
+</resources>
